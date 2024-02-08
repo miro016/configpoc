@@ -26,7 +26,7 @@ jobs:
       run: printenv
     - name: Update appsettings.json
       run: |
-        sed -i 's/\${MESSAGE}/'${{ env.MESSAGE }}'/g' appsettings.json
+        sed -i 's/\${MESSAGE}/'"${{ env.MESSAGE }}"'/g' appsettings.json
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
