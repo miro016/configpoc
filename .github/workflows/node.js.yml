@@ -23,10 +23,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: echo ${{env.MESSAGE}}
-    - uses: devops-actions/json-to-file@v1.0.0
-      with:
-        json: '{"name": ${{env.MESSAGE}}}'
-        filename: 'appsettings.json'
+    - name: Update appsettings.json
+      run: |
+        sed -i 's/\${{ env.MESSAGE }}/'"$MESSAGE"'/g' appsettings.json
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
